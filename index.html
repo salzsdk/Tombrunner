@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tomb Runner - Official Site</title>
+    <style>
+        /* --- CSS STYLES --- */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: 'Segoe UI', Impact, Arial, sans-serif;
+        }
+
+        :root {
+            --bg-dark: #12161a;
+            --bg-card: #1c232a;
+            --sunset-orange: #ff7e47;
+            --sun-gold: #f3ad44;
+            --island-green: #2fa15d;
+            --sky-blue: #7097ca;
+            --text-light: #eef2f7;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--sunset-orange);
+            border-radius: 5px;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(18, 22, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 2px solid var(--sun-gold);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--sunset-orange);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--sun-gold);
+        }
+
+        /* Global Sections layout */
+        .section {
+            padding: 120px 8% 80px 8%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        h2 span {
+            color: var(--sun-gold);
+        }
+
+        /* Hero / Header Section */
+        .hero {
+            background: linear-gradient(rgba(18, 22, 26, 0.5), var(--bg-dark)), 
+                        radial-gradient(circle at center, #2c3a47 0%, var(--bg-dark) 70%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h1 span {
+            color: var(--sunset-orange);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #a0b0c0;
+            max-width: 650px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+        }
+
+        /* Universal Button */
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--sunset-orange), var(--sun-gold));
+            color: #12161a;
+            text-decoration: none;
+            font-weight: 800;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(255, 126, 71, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(243, 173, 68, 0.5);
+        }
+
+        /* Video Section */
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto 0 auto;
+            border: 4px solid var(--island-green);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            background: #000;
+            aspect-ratio: 16 / 9;
+        }
+
+        .video-container video, .video-container iframe {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Features Section */
+        .features {
+            background-color: #161c22;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-top: 4px solid var(--island-green);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--sun-gold);
+        }
+
+        .card p {
+            color: #abbbc0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Join / Contact Section */
+        .contact {
+            text-align: center;
+            background: linear-gradient(#161c22, var(--bg-dark));
+        }
+
+        .contact p {
+            margin-bottom: 30px;
+            color: #abbbc0;
+            font-size: 1.1rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 450px;
+            gap: 15px;
+        }
+
+        .contact-form input {
+            padding: 15px;
+            background: var(--bg-card);
+            border: 2px solid #2c3a47;
+            color: white;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input:focus {
+            outline: none;
+            border-color: var(--sunset-orange);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #0d1013;
+            border-top: 1px solid #1c232a;
+            color: #556575;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 5%; }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.8rem; }
+            .section { padding: 100px 5% 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Tomb<span>Runner</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#gameplay">Gameplay</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#play">Tīmata</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="section hero">
+        <h1>TOMB<br><span>RUNNER</span></h1>
+        <p>A beautifully crafted 2D platforming adventure. Avoid deadly spikes, navigate dangerous ruins, and discover ancient secrets.</p>
+        <a href="#gameplay" class="btn">Watch Action</a>
+    </section>
+
+    <section id="gameplay" class="section">
+        <h2>See the <span>Adventure</span></h2>
+        
+        <div class="video-container">
+    <video src="My Game - (copy) - Google Chrome 2026-01-21 17-47-59.mp4" controls autoplay muted loop></video>
+</div>
+   
+    </section>
+
+    <section id="features" class="section features">
+    <h2>Game <span>Features</span></h2>
+    <div class="grid">
+
+        <div class="card">
+            <h3>⛰️ Mythical Island Legends</h3>
+            <p>Journey through an uncharted Pacific paradise deeply rooted in ancient lore. The vibrant sky, shifting tides, and monolithic stone guardians aren't just a backdrop—they are part of a living world watching your every move.</p>
+        </div>
+
+        <div class="card">
+            <h3>💀 Deadly Ancient Trials</h3>
+            <p>The paths to the hidden tombs are heavily guarded. Navigate crumbling ruins packed with razor-sharp wooden spikes, unstable falling platforms, and hidden traps designed to crush intruders.</p>
+        </div>
+
+        <div class="card">
+            <h3>⚡ Razor-Sharp Controls</h3>
+            <p>Built for fans of challenging, high-stakes 2D platformers. The game features physics-tuned movement, responsive jump mechanics, and precise collision detection where timing is everything.</p>
+        </div>
+
+    </div>
+</section>
+
+    <section id="play" class="section contact">
+        <h2>Ready to <span>Tīmata?</span></h2>
+        <p>Join our player guild today to receive game updates, development updates, and launch news.</p>
+        
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Awesome! You have been added to the Tomb Runner list.');">
+            <input type="text" placeholder="Gamer Tag / Name" required>
+            <input type="email" placeholder="Your Email Address" required>
+            <button type="submit" class="btn">Join the Guild</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Tomb Runner Game. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
